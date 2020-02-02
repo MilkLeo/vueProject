@@ -22,12 +22,14 @@
               label="谷子类型">
             </el-table-column>
             <el-table-column
-              prop="address"
+              prop="cname"
               label="角色">
             </el-table-column>
             <el-table-column
-              prop="picture_url"
               label="谷子图片">
+              <template slot-scope="props">
+                <img src="props.row.picture_url">
+              </template>
             </el-table-column>
             <!--<el-table-column
               prop="address"
@@ -42,15 +44,15 @@
               label="群号/闲鱼名称">
             </el-table-column>-->
             <el-table-column
-              prop="address"
+              prop="isAll"
               label="是否全款">
             </el-table-column>
             <el-table-column
-              prop="address"
+              prop="front_money"
               label="定金">
             </el-table-column>
             <el-table-column
-              prop="isAll"
+              prop="money"
               label="全款">
             </el-table-column>
             <!--<el-table-column
@@ -65,9 +67,15 @@
               prop="address"
               label="邮费">
             </el-table-column>-->
-            <el-table-column
-              prop="isReceived"
-              label="是否到货">
+            <el-table-column label="是否到货">
+              <template slot-scope="props">
+                <div v-if="props.row.isReceived == false">
+                  <el-tag type="danger" effect="dark">未收货</el-tag>
+                </div>
+                <div v-else-if="props.row.isReceived == true">
+                  <el-tag type="success" effect="dark">已收货</el-tag>
+                </div>
+              </template>
             </el-table-column>
 
             <!--添加操作按钮-->
@@ -96,17 +104,41 @@
                     <span>{{ props.row.end_date}}</span>
                   </el-form-item>
                   <el-form-item label="来源">
-                    <span>{{ props.row.source }}</span>
+
+                    <div v-if="props.row.source === 0">
+                      <el-tag>拼团</el-tag>
+                    </div>
+                    <div v-else-if="props.row.source === 1">
+                      <el-tag style="color: #67C23A">闲鱼</el-tag>
+                    </div>
+                    <div v-else-if="props.row.source === 2">
+                      <el-tag style="color: #67C23A">煤炉</el-tag>
+                    </div>
+                    <div v-else-if="props.row.source === 3">
+                      <el-tag style="color: #E6A23C">代购</el-tag>
+                    </div>
+                    <div v-else-if="props.row.source === 4">
+                      <el-tag style="color: #909399">微博</el-tag>
+                    </div>
+                    <!--<span>{{  }}</span>-->
                   </el-form-item>
                   <el-form-item label="群号/闲鱼号/微博号">
                     <span>{{ props.row.name }}</span>
                   </el-form-item>
                   <el-form-item label="邮费">
-                    <span>{{ props.row.name }}</span>
+                    <span>{{ props.row.postage }}</span>
                   </el-form-item>
+                  <el-form-item label="付款方式">
+                    <div v-if="props.row.payType === 0">
+                      <span> 支付宝</span>
+                    </div>
+                    <div v-else-if="props.row.payType === 1">
+                      <span> 微信</span>
+                    </div>
 
+                  </el-form-item>
                   <el-form-item label="总价">
-                    <span>{{ props.row.name }}</span>
+                    <span>{{ props.row.money }}</span>
                   </el-form-item>
                 </el-form>
               </template>
@@ -128,7 +160,7 @@
 
   export default {
     data () {
-      return{
+      return {
         tableData: [],
       }
       /*return {
@@ -151,10 +183,9 @@
         }]
       }*/
 
-
     },
-    created(){
-      this.getNewsList();
+    created () {
+      this.getNewsList()
     },
     methods: {
       // 设置表格第一行的颜色
@@ -163,13 +194,13 @@
         return 'background:#F3F4F7;color:#555'
       },
 
-      getNewsList(){
-        this.axios.post('/data/test/table').then((response)=>{
+      getNewsList () {
+        this.axios.post('/data/test/table').then((response) => {
 
-          this.tableData=response.data;
+          this.tableData = response.data
           console.log(this.tableData)
-        }).catch((response)=>{
-          console.log(response);
+        }).catch((response) => {
+          console.log(response)
         })
       }
     }
