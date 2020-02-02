@@ -20,6 +20,26 @@
             <el-table-column
               prop="type"
               label="谷子类型">
+              <template slot-scope="props">
+                <div v-if="props.row.type === 0">
+                  <el-tag>吧唧</el-tag>
+                </div>
+                <div v-else-if="props.row.type === 1">
+                  <el-tag style="color: #67C23A">橡胶</el-tag>
+                </div>
+                <div v-else-if="props.row.type === 2">
+                  <el-tag style="color: #20B2AA">挂件</el-tag>
+                </div>
+                <div v-else-if="props.row.type === 3">
+                  <el-tag style="color: #E6A23C">明信片</el-tag>
+                </div>
+                <div v-else-if="props.row.type === 4">
+                  <el-tag style="color: #909399">文件夹</el-tag>
+                </div>
+                <div v-else-if="props.row.type === 5">
+                  <el-tag style="color: #708090">其他</el-tag>
+                </div>
+              </template>
             </el-table-column>
             <el-table-column
               prop="cname"
@@ -44,8 +64,15 @@
               label="群号/闲鱼名称">
             </el-table-column>-->
             <el-table-column
-              prop="isAll"
               label="是否全款">
+              <template slot-scope="props">
+                <div v-if="props.row.isAll == 0">
+                  <el-tag type="danger" effect="dark">非全款</el-tag>
+                </div>
+                <div v-else-if="props.row.isAll == 1">
+                  <el-tag type="success" effect="dark">全款</el-tag>
+                </div>
+              </template>
             </el-table-column>
             <el-table-column
               prop="front_money"
@@ -60,8 +87,15 @@
               label="出谷日期">
             </el-table-column>-->
             <el-table-column
-              prop="isFreeShipping"
               label="是否包邮">
+              <template slot-scope="props">
+                <div v-if="props.row.isFreeShipping == 0">
+                  <el-tag type="danger" effect="dark">不包邮</el-tag>
+                </div>
+                <div v-else-if="props.row.isFreeShipping == 1">
+                  <el-tag type="success" effect="dark">包邮</el-tag>
+                </div>
+              </template>
             </el-table-column>
             <!--<el-table-column
               prop="address"

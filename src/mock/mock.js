@@ -39,7 +39,7 @@ for (let i = 0; i < 10; i++) {
     'isReceived': Random.boolean, // 可以生成基本数据类型
     'source': Random.natural(0, 4), // 生成1到100之间自然数
     'payType': Random.integer(0, 1),
-    'type': Random.natural(0, 1), // 生成1到100之间自然数
+    'type': Random.natural(0, 5), // 生成1到100之间自然数
     'isAll': Random.integer(0, 1), // 生成1到100之间的整数
     'create_date': Random.date(), // 生成一个随机日期,可加参数定义日期格式
     'end_date': Random.date(),
