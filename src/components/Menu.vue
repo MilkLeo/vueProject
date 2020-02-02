@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="20%">
+  <el-aside width="12%">
     <el-row class="tac">
       <el-col :span="12" style="width:100%">
         <el-menu default-active="this.$route.path" class="el-menu-vertical-demo"

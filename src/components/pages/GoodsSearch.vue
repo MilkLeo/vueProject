@@ -8,7 +8,13 @@
           <el-table
             :data="tableData"
             style="width: 100%"
-            :header-row-style="rowClass">
+            :header-row-style="rowClass"
+            @selection-change="handleSelectionChange">
+            <el-table-column
+              type="selection"
+              width="55">
+            </el-table-column>
+
             <el-table-column
               prop="create_date"
               label="排单日期">
@@ -234,6 +240,11 @@
       rowClass ({row, rowIndex}) {
         console.log(rowIndex) //表头行下标
         return 'background:#F3F4F7;color:#555'
+      },
+
+
+      handleSelectionChange(val) {
+        this.multipleSelection = val;
       },
 
       getNewsList () {
