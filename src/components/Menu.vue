@@ -3,12 +3,10 @@
     <el-row class="tac">
       <el-col :span="12" style="width:100%">
         <el-menu default-active="this.$route.path" class="el-menu-vertical-demo"
-                 @open="handleOpen"
-                 @close="handleClose"
                  background-color="#545c64"
                  text-color="#fff"
                  active-text-color="#ffd04b"
-                 router=true>
+                 router>
          <!-- <el-submenu index="GoodsInsert">
             <template slot="title">
               <div class="initMenu">
@@ -67,7 +65,8 @@
 </template>
 
 <script>
-export default {
+
+  export default {
   name: 'Menu'
 }
 </script>
