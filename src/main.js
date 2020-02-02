@@ -5,10 +5,26 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import './mock/mock'
+
+
+//使用mock模拟传输数据
+/*
+const mock = true;
+if(mock){
+  require("./mock/mock");
+}
+*/
+
+
+Vue.use(VueAxios,axios);
 
 Vue.use(ElementUI, {
   size: 'medium'
 })
+
 
 Vue.config.productionTip = false
 

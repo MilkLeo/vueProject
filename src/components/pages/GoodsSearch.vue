@@ -10,7 +10,7 @@
             style="width: 100%"
             :header-row-style="rowClass">
             <el-table-column
-              prop="date"
+              prop="create_date"
               label="排单日期">
             </el-table-column>
             <el-table-column
@@ -18,7 +18,7 @@
               label="谷子名称">
             </el-table-column>
             <el-table-column
-              prop="address"
+              prop="type"
               label="谷子类型">
             </el-table-column>
             <el-table-column
@@ -26,7 +26,7 @@
               label="角色">
             </el-table-column>
             <el-table-column
-              prop="address"
+              prop="picture_url"
               label="谷子图片">
             </el-table-column>
             <!--<el-table-column
@@ -50,7 +50,7 @@
               label="定金">
             </el-table-column>
             <el-table-column
-              prop="address"
+              prop="isAll"
               label="全款">
             </el-table-column>
             <!--<el-table-column
@@ -58,7 +58,7 @@
               label="出谷日期">
             </el-table-column>-->
             <el-table-column
-              prop="address"
+              prop="isFreeShipping"
               label="是否包邮">
             </el-table-column>
             <!--<el-table-column
@@ -66,7 +66,7 @@
               label="邮费">
             </el-table-column>-->
             <el-table-column
-              prop="address"
+              prop="isReceived"
               label="是否到货">
             </el-table-column>
 
@@ -74,7 +74,7 @@
             <el-table-column
               label="操作">
               <template slot-scope="scope">
-                <el-button size="mini" type="primary">编辑</el-button>
+                <el-button size="mini" type="primary" @click="getNewsList">编辑</el-button>
                 <!--
                                   <el-button size="mini" type="danger">删除</el-button>
                 -->
@@ -93,10 +93,10 @@
                   </el-form-item>
 
                   <el-form-item label="出谷日期">
-                    <span>{{ props.row.date}}</span>
+                    <span>{{ props.row.end_date}}</span>
                   </el-form-item>
                   <el-form-item label="来源">
-                    <span>{{ props.row.name }}</span>
+                    <span>{{ props.row.source }}</span>
                   </el-form-item>
                   <el-form-item label="群号/闲鱼号/微博号">
                     <span>{{ props.row.name }}</span>
@@ -128,7 +128,10 @@
 
   export default {
     data () {
-      return {
+      return{
+        tableData: [],
+      }
+      /*return {
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -146,14 +149,28 @@
           name: '王小虎',
           address: '上海市普陀区金沙江路 1516 弄'
         }]
-      }
-    },
+      }*/
 
+
+    },
+    created(){
+      this.getNewsList();
+    },
     methods: {
       // 设置表格第一行的颜色
       rowClass ({row, rowIndex}) {
         console.log(rowIndex) //表头行下标
         return 'background:#F3F4F7;color:#555'
+      },
+
+      getNewsList(){
+        this.axios.post('/data/test/table').then((response)=>{
+
+          this.tableData=response.data;
+          console.log(this.tableData)
+        }).catch((response)=>{
+          console.log(response);
+        })
       }
     }
   }
