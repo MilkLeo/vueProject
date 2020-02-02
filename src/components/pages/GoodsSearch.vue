@@ -69,20 +69,31 @@
               prop="address"
               label="是否到货">
             </el-table-column>
+
+            <!--添加操作按钮-->
+            <el-table-column
+              label="操作">
+              <template slot-scope="scope">
+                <el-button size="mini" type="primary">编辑</el-button>
+                <!--
+                                  <el-button size="mini" type="danger">删除</el-button>
+                -->
+              </template>
+            </el-table-column>
             <!--<el-table-column
               prop="address"
               label="总价">
             </el-table-column>-->
 
             <el-table-column type="expand">
-             <template slot-scope="props">
+              <template slot-scope="props">
                 <el-form label-position="left" inline class="demo-table-expand">
                   <el-form-item label="动漫名称">
                     <span>{{ props.row.name }}</span>
                   </el-form-item>
 
                   <el-form-item label="出谷日期">
-                    <span>{{ props.row.name }}</span>
+                    <span>{{ props.row.date}}</span>
                   </el-form-item>
                   <el-form-item label="来源">
                     <span>{{ props.row.name }}</span>
@@ -161,6 +172,7 @@
     font-size: 0;
     line-height: 15px;
   }
+
   .demo-table-expand label {
     width: auto;
     color: #99a9bf;
