@@ -51,6 +51,14 @@
                 <img src="props.row.picture_url">
               </template>
             </el-table-column>
+            <el-table-column
+              label="单价"
+              prop="unit_price">
+            </el-table-column>
+            <el-table-column
+              label="数量"
+              prop="number">
+            </el-table-column>
             <!--<el-table-column
               prop="address"
               label="动漫名称">

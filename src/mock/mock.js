@@ -51,6 +51,8 @@ for (let i = 0; i < 10; i++) {
     'front_money': Random.float(0, 30, 2, 2),
     'postage': Random.float(0, 12, 2, 2),
     'money': Random.float(0, 100, 2, 2),
+    'unit_price': Random.float(0, 30, 2, 2),
+    'number': Random.integer(1, 10)
   }
   endData.push(data)
 
