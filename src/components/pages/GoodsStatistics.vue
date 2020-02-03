@@ -78,7 +78,6 @@
   var echarts = require('echarts')
 
   export default {
-    name: 'hello',
     data () {
       return {
         data: []
