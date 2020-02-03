@@ -8,6 +8,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './mock/mock'
+
+
+
 import VueECharts from 'vue-echarts' // 在 webpack 环境下指向 components/ECharts.vue
 Vue.component('v-chart', VueECharts)
 //使用mock模拟传输数据

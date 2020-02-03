@@ -16,8 +16,10 @@ import Mock from 'mockjs'
  *      Miscellaneous
  */
 const Random = Mock.Random
-let backData = []
-let endData = []
+let backData = []     //表格数据
+let endData = []      //表格数据
+let statistic=[]      //条状统计图数据
+let circleStatistic=[] //饼状统计图数据
 
 //mock一组数据 生成假数据
 for (let i = 0; i < 10; i++) {
@@ -56,6 +58,13 @@ for (let i = 0; i < 10; i++) {
   }
   endData.push(data)
 
+  let statisticData = {
+    'create_date': Random.date(), // 生成一个随机日期,可加参数定义日期格式
+    'money': Random.float(0, 100, 2, 2),
+  }
+  statistic.push(statisticData)
+
+
   let template = {
     'boolean': Random.boolean, // 可以生成基本数据类型
     'natural': Random.natural(5, 10), // 生成1到100之间自然数
@@ -75,11 +84,28 @@ for (let i = 0; i < 10; i++) {
   }
   backData.push(template)
 }
+
+
+for (let i = 0; i < 5; i++) {
+  let data={
+    'cname': Random.cname(),  //角色名
+    'money': Random.float(0, 100, 2, 2) //总价
+  }
+
+  circleStatistic.push(data);
+}
+
+
+
 console.log('我是mock数据：' + backData)
 
 //一、Mock.mock() API (根据数据模板生成模拟数据)
 Mock.mock('/data', /post|get/i, backData)
 Mock.mock('/data/test/table', /post|get/i, endData)
+Mock.mock('/data/test/statistic', /post|get/i, statistic)
+Mock.mock('/data/test/circleStatistic', /post|get/i, circleStatistic)
+
+
 export default Mock
 /**
  * Mock.mock( rurl?, rtype?, template|function( options ) )
