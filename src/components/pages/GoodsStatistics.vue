@@ -11,7 +11,7 @@
       </el-col>
       <el-col :span="12">
         <div class="grid-content bg-purple-light">
-          <div id="main" ref="main" style="width: 600px;height:400px;"></div>
+          <div id="main" ref="main" style="width: 600px;height:400px"></div>
         </div>
       </el-col>
     </el-row>
@@ -210,10 +210,7 @@
 width: 100%;
 height: 100%;
 }-->
-#main{
-width: '300px';
-height: '300px'
-}
+
 
 
 <style scoped>
