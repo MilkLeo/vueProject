@@ -23,7 +23,7 @@
 <script>
   import vMenu from './Menu.vue'
   /* import vSearch from './pages/GoodsSearch'
-    import vInsert from './pages/GoodsInsert.vue'
+    import vInsert from './pages/GoodsSell.vue'
     import vThanks from './pages/Thanks.vue' */
 
   export default {

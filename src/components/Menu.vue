@@ -27,12 +27,26 @@
               <el-menu-item index="1-4-1">选项1</el-menu-item>
             </el-submenu>
           </el-submenu>-->
-          <el-menu-item index="GoodsSearch">
+
+          <el-submenu index="1" class="initMenu">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span>谷子管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="GoodsSearch">谷子查询</el-menu-item>
+              <el-menu-item index="GoodsSell">回血</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+
+          <!--<el-menu-item index="GoodsSearch">
             <div class="initMenu">
               <i class="el-icon-menu"></i>
               <span slot="title">谷子管理</span>
             </div>
-          </el-menu-item>
+          </el-menu-item>-->
+
+
 
           <el-menu-item index="GoodsStatistics">
 

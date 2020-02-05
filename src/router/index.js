@@ -14,9 +14,9 @@ export default new Router({
       name: 'Index',
       component: Main,
       children: [{
-        path: 'GoodsInsert',
-        name: 'GoodsInsert',
-        component: () => import('@/components/pages/GoodsInsert')
+        path: 'GoodsSell',
+        name: 'GoodsSell',
+        component: () => import('@/components/pages/GoodsSell')
       }, {
         path: 'GoodsSearch',
         name: 'GoodsSearch',

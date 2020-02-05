@@ -1,5 +1,5 @@
 <template>
-  <span>添加</span>
+  <span>回血</span>
 
 
 </template>

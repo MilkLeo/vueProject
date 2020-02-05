@@ -3,8 +3,17 @@
 
     <el-container>
       <el-header>谷子查询</el-header>
+
       <el-container>
         <el-main>
+          <el-row>
+            <el-col :span="24" class="layClass">
+              <div class="grid-content bg-purple-dark">
+                <el-button type="success" size="min" @click="addDialogVisible=true" round>添加</el-button>
+                <el-button type="danger" size="min" round>删除</el-button>
+              </div>
+            </el-col>
+          </el-row>
           <el-table
             :data="tableData"
             style="width: 100%"
@@ -130,7 +139,7 @@
             <el-table-column
               label="操作">
               <template slot-scope="scope">
-                <el-button size="mini" type="primary" @click="getNewsList">编辑</el-button>
+                <el-button size="mini" type="primary" @click="editDialogVisible=true">编辑</el-button>
                 <!--
                                   <el-button size="mini" type="danger">删除</el-button>
                 -->
@@ -198,6 +207,130 @@
     </el-container>
 
 
+    <!--新增弹框-->
+    <el-dialog title="新增谷子信息" ref="addDialog" :visible.sync="addDialogVisible"
+               width="500px">
+      <el-form :model="form">
+        <el-form-item label="排单时间" :label-width="formLabelWidth" class="datepicker">
+          <div class="block inputclass">
+            <el-date-picker
+              v-model="create_time"
+              type="date"
+              placeholder="选择日期">
+            </el-date-picker>
+          </div>
+        </el-form-item>
+
+
+        <el-form-item label="谷子名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" class="inputclass" autocomplete="off" style="width: 150px"></el-input>
+        </el-form-item>
+        <el-form-item label="谷子类型" :label-width="formLabelWidth">
+          <div class="inputclass">
+            <el-select v-model="form.region" placeholder="请选择活动区域">
+              <el-option label="吧唧" value="0"></el-option>
+              <el-option label="橡胶" value="1"></el-option>
+              <el-option label="挂件" value="2"></el-option>
+              <el-option label="明信片" value="3"></el-option>
+              <el-option label="文件夹" value="4"></el-option>
+              <el-option label="其他" value="5"></el-option>
+            </el-select>
+          </div>
+        </el-form-item>
+
+        <el-form-item label="角色名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" class="inputclass" autocomplete="off" style="width: 150px"></el-input>
+        </el-form-item>
+
+
+        <el-form-item label="单价" :label-width="formLabelWidth">
+          <el-input-number v-model="form.price" class="inputclass" :precision="2" :step="0.1"
+                           :max="100000"></el-input-number>
+        </el-form-item>
+
+        <el-form-item label="数量" :label-width="formLabelWidth">
+          <el-input-number v-model="form.number" class="inputclass" :precision="0" :step="1"
+                           :max="100"></el-input-number>
+        </el-form-item>
+
+
+        <el-form-item label="是否全款" :label-width="formLabelWidth">
+          <el-switch
+            v-model="form.isAll"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            style="float: left">
+          </el-switch>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer" style="line-height: 10px">
+        <el-button @click="addDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addDialogVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
+
+    <!--修改弹框-->
+    <el-dialog title="修改谷子信息" ref="editDialog" :visible.sync="editDialogVisible" width="500px">
+      <el-form :model="form">
+        <el-form-item label="排单时间" :label-width="formLabelWidth" class="datepicker">
+          <div class="block inputclass">
+            <el-date-picker
+              v-model="create_time"
+              type="date"
+              placeholder="选择日期">
+            </el-date-picker>
+          </div>
+        </el-form-item>
+
+
+        <el-form-item label="谷子名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" class="inputclass" autocomplete="off" style="width: 150px"></el-input>
+        </el-form-item>
+        <el-form-item label="谷子类型" :label-width="formLabelWidth">
+          <div class="inputclass">
+            <el-select v-model="form.region" placeholder="请选择活动区域">
+              <el-option label="吧唧" value="0"></el-option>
+              <el-option label="橡胶" value="1"></el-option>
+              <el-option label="挂件" value="2"></el-option>
+              <el-option label="明信片" value="3"></el-option>
+              <el-option label="文件夹" value="4"></el-option>
+              <el-option label="其他" value="5"></el-option>
+            </el-select>
+          </div>
+        </el-form-item>
+
+        <el-form-item label="角色名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" class="inputclass" autocomplete="off" style="width: 150px"></el-input>
+        </el-form-item>
+
+
+        <el-form-item label="单价" :label-width="formLabelWidth">
+          <el-input-number v-model="form.price" class="inputclass" :precision="2" :step="0.1"
+                           :max="100000"></el-input-number>
+        </el-form-item>
+
+        <el-form-item label="数量" :label-width="formLabelWidth">
+          <el-input-number v-model="form.number" class="inputclass" :precision="0" :step="1"
+                           :max="100"></el-input-number>
+        </el-form-item>
+
+
+        <el-form-item label="是否全款" :label-width="formLabelWidth">
+          <el-switch
+            v-model="form.isAll"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            style="float: left">
+          </el-switch>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer" style="line-height: 10px">
+        <el-button @click="editDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editDialogVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 
 
@@ -210,6 +343,23 @@
     data () {
       return {
         tableData: [],
+        addDialogVisible: false,
+        editDialogVisible: false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: '',
+          price: '',
+          number: '',
+          isAll: true
+        },
+        formLabelWidth: '120px',
+        create_time: '',
       }
       /*return {
         tableData: [{
@@ -242,9 +392,8 @@
         return 'background:#F3F4F7;color:#555'
       },
 
-
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
+      handleSelectionChange (val) {
+        this.multipleSelection = val
       },
 
       getNewsList () {
@@ -255,17 +404,53 @@
         }).catch((response) => {
           console.log(response)
         })
+      },
+
+      /*新增弹框显示*/
+      addDiagOpen () {
+        var addDialog = this.$refs.addDialog
+        addDialog.$open
+        if (addDialog) {
+        addDialog.style.visible = true
+          console.log(addDialog.style.dialogFormVisible)
+        }else{
+          console.log("测试失败")
+        }
+
+      },
+
+
+      /*弹框open事件*/
+      open() {
+        axios.get('/admin/getLocation', {
+          params: {
+            cityId: this.cityId,
+            address: this.address
+          }
+        }).then((res) => {
+          this.tableData = res.data.data
+        }).catch((err) => {
+          console.log(err)
+        })
       }
-    }
+
+    },
+
   }
 
 </script>
 
 <style>
-
+  /*表格样式*/
   .el-table__header {
     height: 35px;
     line-height: 50px;
+  }
+
+  .el-row .el-col.layClass {
+    height: 50px;
+    line-height: 10px;
+    width: 200px;
   }
 
 
@@ -283,5 +468,20 @@
     margin-right: 0;
     margin-bottom: 0;
     width: 50%;
+  }
+
+  /*弹框样式*/
+  .el-dialog .el-dialog__header {
+    line-height: 10px;
+  }
+
+  .datepicker {
+    width: 80px;
+  }
+
+
+  .inputclass {
+    float: left;
+    width: 180px;
   }
 </style>
