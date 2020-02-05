@@ -242,6 +242,19 @@
           <el-input v-model="form.name" class="inputclass" autocomplete="off" style="width: 150px"></el-input>
         </el-form-item>
 
+        <el-form-item label="谷子图片" :label-width="formLabelWidth">
+          <el-upload
+            class="upload-demo"
+            drag
+            action="https://jsonplaceholder.typicode.com/posts/"
+            multiple
+            style="width: 300px">
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
+        </el-form-item>
+
 
         <el-form-item label="单价" :label-width="formLabelWidth">
           <el-input-number v-model="form.price" class="inputclass" :precision="2" :step="0.1"
@@ -304,6 +317,18 @@
           <el-input v-model="form.name" class="inputclass" autocomplete="off" style="width: 150px"></el-input>
         </el-form-item>
 
+        <el-form-item label="谷子图片" :label-width="formLabelWidth">
+          <el-upload
+            class="upload-demo"
+            drag
+            action="https://jsonplaceholder.typicode.com/posts/"
+            multiple
+            style="width: 300px">
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
+        </el-form-item>
 
         <el-form-item label="单价" :label-width="formLabelWidth">
           <el-input-number v-model="form.price" class="inputclass" :precision="2" :step="0.1"
@@ -411,17 +436,16 @@
         var addDialog = this.$refs.addDialog
         addDialog.$open
         if (addDialog) {
-        addDialog.style.visible = true
+          addDialog.style.visible = true
           console.log(addDialog.style.dialogFormVisible)
-        }else{
-          console.log("测试失败")
+        } else {
+          console.log('测试失败')
         }
 
       },
 
-
       /*弹框open事件*/
-      open() {
+      open () {
         axios.get('/admin/getLocation', {
           params: {
             cityId: this.cityId,
@@ -483,5 +507,10 @@
   .inputclass {
     float: left;
     width: 180px;
+  }
+
+  .el-upload-dragger{
+    width: 300px;
+    height: 200px;
   }
 </style>
