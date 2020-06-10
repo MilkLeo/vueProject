@@ -278,7 +278,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer" style="line-height: 10px">
         <el-button @click="addDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addDialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="insertUserGoods">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -427,7 +427,7 @@
           this.tableData = response.data
           console.log(this.tableData)
         }).catch((response) => {
-          console.log(response)
+
         })
       },
 
@@ -441,6 +441,35 @@
         } else {
           console.log('测试失败')
         }
+
+      },
+
+      //添加谷子信息
+      insertUserGoods () {
+        // this.axios.post('/usergoods/insertOrUpdateUserGoods', {
+        //   ID: 12345
+        // }).then(function (response) {
+        //     console.log(response)
+        //   })
+        //   .catch(function (error) {
+        //     console.log(error)
+        //   })
+        this.axios.get('/usergoods/insertOrUpdateUserGoods', {
+          name: '灰原哀',
+          lastName: 'Flintstone'
+        }).then(function (response) {
+          console.log(response)
+        }).catch(function (error) {
+          console.log(error)
+        })
+        // this.$api.post("/usergoods/insertOrUpdateUserGoods").then((res) => {
+        //   res = res.data
+        //   if (res.errno === ERR_OK) {
+        //     this.themeList=res.data;
+        //   }
+        // }).catch((error) => {
+        //   console.warn(error)
+        // })
 
       },
 
@@ -509,7 +538,7 @@
     width: 180px;
   }
 
-  .el-upload-dragger{
+  .el-upload-dragger {
     width: 300px;
     height: 200px;
   }

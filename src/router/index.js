@@ -8,6 +8,7 @@ import Main from '@/components/Main'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -29,6 +30,14 @@ export default new Router({
         path: 'Thanks',
         name: 'Thanks',
         component: () => import('@/components/pages/Thanks')
+      }, {
+        path: 'GroupManage',
+        name: 'GroupManage',
+        component: () => import('@/components/pages/GroupManage')
+      }, {
+        path: 'GroupOrder',
+        name: 'GroupOrder',
+        component: () => import('@/components/pages/GroupOrder')
       }]
     }
   ]
